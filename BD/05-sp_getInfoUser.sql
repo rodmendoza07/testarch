@@ -1,7 +1,7 @@
 USE testarchdb
 GO
 
-ALTER PROCEDURE [dbo].[sp_getInfoUser](
+CREATE PROCEDURE [dbo].[sp_getInfoUser](
 	@email NVARCHAR(150) = ''
 	, @pwd NVARCHAR(150) = ''
 )

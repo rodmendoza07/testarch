@@ -19,5 +19,9 @@ namespace testarchApi.Connection
         {
             return "testarchdb.dbo.sp_getInfoUser";
         }
+        public static string AddUsers()
+        {
+            return "testarchdb.dbo.sp_registerUser";
+        }
     }
 }

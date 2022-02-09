@@ -1,7 +1,7 @@
 USE testarchdb
 GO
 
-ALTER PROCEDURE [dbo].[sp_getAesParams]
+CREATE PROCEDURE [dbo].[sp_getAesParams]
 AS
 BEGIN
 	DECLARE
