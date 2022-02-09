@@ -15,5 +15,9 @@ namespace testarchApi.Connection
         {
             return "testarchdb.dbo.sp_getJWTParams";
         }
+        public static string GetInfoUser()
+        {
+            return "testarchdb.dbo.sp_getInfoUser";
+        }
     }
 }
