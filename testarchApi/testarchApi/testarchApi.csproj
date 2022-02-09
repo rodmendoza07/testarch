@@ -183,11 +183,13 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Login.cs" />
+    <Compile Include="Models\Task.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Security\AesSecurity.cs" />
     <Compile Include="Security\TokenMaker.cs" />
     <Compile Include="Security\TokenValidationManager.cs" />
+    <Compile Include="Security\TValidator.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
