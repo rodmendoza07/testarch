@@ -1,8 +1,14 @@
-import React from 'react'
+import React, {Fragment} from 'react';
+import { Link, withRouter } from 'react-router-dom';
+import Navbar from './Navbar';
+import Sidebar from './Sidebar';
 
 const Inicio = () => {
   return (
-    <div>Inicio</div>
+    <Fragment>
+        <Navbar/>
+        <Sidebar/>
+    </Fragment>
   )
 }
 
