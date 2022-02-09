@@ -7,3 +7,5 @@ Aplicación web creada en react js. Para su ejecución se requiere tener instala
 - npm install
 - npm run start
 
+## API
+API creada en .NET Framework. Para su ejecución por favor configurar el puerto 61881
