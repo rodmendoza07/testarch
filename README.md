@@ -5,7 +5,7 @@ Prueba: **ARQUITECTO DE SOFTWARE**
 
 Deadline: **1 día**
 
-Nombre: 
+Nombre: Luis Rodrigo Mendoza Rodríguez
 
 ------
 ## Clona y crea tu repositorio para la evaluación ##
