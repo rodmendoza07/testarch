@@ -97,5 +97,45 @@ namespace testarchApi.Controllers
                 }
             }
         }
+        [HttpPost]
+        [Route("VT")]
+        public IHttpActionResult Validtoken([FromBody] dynamic d)
+        {
+            try
+            {
+                string t = string.Empty;
+                t = d["token"];
+                TValidator tv = new TValidator();
+                if (tv.ValidT(t))
+                {
+                    return Json(new
+                    {
+                        messge = HttpStatusCode.OK.ToString(),
+                        code = HttpStatusCode.OK
+                    });
+                }
+                else
+                {
+                    throw new Exception();
+                }
+            }
+            catch (Exception)
+            {
+                HttpResponseMessage r = new HttpResponseMessage();
+
+                JObject jObject = new JObject(
+                        new JProperty("message", HttpStatusCode.Unauthorized.ToString()),
+                        new JProperty("code", HttpStatusCode.Unauthorized)
+                    );
+
+                var m = JsonConvert.SerializeObject(jObject);
+
+                r.StatusCode = HttpStatusCode.Unauthorized;
+                r.ReasonPhrase = HttpStatusCode.Unauthorized.ToString();
+                r.Content = new StringContent(m, Encoding.UTF8, "application/json");
+
+                throw new HttpResponseException(r);
+            }
+        }
     }
 }
