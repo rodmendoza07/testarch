@@ -23,5 +23,18 @@ namespace testarchApi.Connection
         {
             return "testarchdb.dbo.sp_registerUser";
         }
+        public static string AddTask()
+        {
+            return "testarchdb.dbo.sp_registerTask";
+        }
+        public static string GetAllTasks()
+        {
+            return "testarchdb.dbo.sp_getTask";
+        }
+
+        public static string GetCatEstdo()
+        {
+            return "testarchdb.dbo.sp_getCatalogoEstadoTarea";
+        }
     }
 }
