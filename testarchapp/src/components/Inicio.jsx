@@ -3,20 +3,63 @@ import { Link, withRouter } from 'react-router-dom';
 import Navbar from './Navbar';
 import Sidebar from './Sidebar';
 
-const Inicio = () => {
+const Inicio = (props) => {
 
-  const [tareas, setTareas] = React.useState([]);
+    const [tareas, setTareas] = React.useState([]);
+    const [allTask, setAllTask] = React.useState([])
 
-  const FiltradoEstado = (estate) => {
-   
-  }
+    React.useEffect(async() => {
+        if (!window.localStorage.getItem("uSession")) {
+            return props.history.push("/")
+        }
+        ObtenerTareas();
+    }, [])
 
-  const Filtrado = async (filtro) => {
-     
-  }
+    const ObtenerTareas = async () => {
+
+        try {
+            const data = await fetch("http://localhost:61881/api/Task", {method: 'GET', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${JSON.parse(window.localStorage.getItem("uSession")).token}` }})
+            const datas = await data.json()
+            setTareas(datas.response)
+            setAllTask(datas.response)   
+        } catch (error) {
+            const vt = await fetch("http://localhost:61881/api/VT", {method:"POST", headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({"token": `${JSON.parse(window.localStorage.getItem("uSession")).token}`})})
+            const vtData = await vt.json()
+            if (vtData.code === 401) {
+                window.localStorage.removeItem("uSession")
+                window.location.reload();
+            }
+        }
+    }
+
+    const FiltradoEstado = (estate) => {
+        if (estate === 3) {
+            setTareas(allTask)
+        } else {
+            const tareasFiltro = allTask.filter(item => item.estadoId == estate)
+            setTareas(tareasFiltro)
+        }
+    }
+
+    const Filtrado = async (filtro) => {
+        try {
+            const data = await fetch(`http://localhost:61881/api/Filtro/Task/${filtro}`, {method: 'GET', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${JSON.parse(window.localStorage.getItem("uSession")).token}` }})
+            const datas = await data.json()
+            setTareas(datas.response)  
+        } catch (error) {
+            const vt = await fetch("http://localhost:61881/api/VT", {method:"POST", headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({"token": `${JSON.parse(window.localStorage.getItem("uSession")).token}`})})
+            const vtData = await vt.json()
+            if (vtData.code === 401) {
+                window.localStorage.removeItem("uSession")
+                window.location.reload();
+            }
+        }
+    }
 
   return (
-    <Fragment>
+        <Fragment>
             <Navbar/>
             <Sidebar/>
             <div className="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
@@ -108,7 +151,7 @@ const Inicio = () => {
                 </div>
             </div>
         </Fragment>
-  )
-}
+    );
+};
 
 export default withRouter(Inicio);
